@@ -1,9 +1,12 @@
 {
     "compilerOptions":{
+        "module": "commonjs",
         "target": "es6",
         "outDir": "./dist/",
         "sourceMap": true,
-        "watch": true
+        "watch": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "include": [
         "./src/**/*"

@@ -7,6 +7,7 @@ import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as nunjucks from 'nunjucks';
+import * as mvc from 'express-mvc-ts';
 
 import { IndexRoute } from './routes/index';
 
@@ -20,7 +21,6 @@ export class Server {
   constructor() {
     this.app = express();
     this.config();
-    this.routes();
     this.api();
   }
 
@@ -38,19 +38,15 @@ export class Server {
       autoescape:true,
       express:this.app,
       watch:true,
-      noCache:true,
     });
 
     this.app.set('view engine', 'html');
 
     this.app.use(express.static(path.join(__dirname,'../public')));
-  }
 
-  routes() : void {
-    const router : express.Router = express.Router();
-
-    IndexRoute.create(router);
-
-    this.app.use(router);
+    mvc.setup(this.app, {
+      controllerDir: path.join(__dirname, './controllers'),
+      debugRoutes:true
+    });
   }
 }
