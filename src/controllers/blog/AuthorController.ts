@@ -3,11 +3,6 @@ import { Inject, HttpGet, Route, Controller, FromQuery, FromRoute, MetadataSymbo
 import BaseController from '../Controller';
 import { Author } from '../../core/database';
 
-declare interface IParams {
-    a?: string;
-    b?: string;
-}
-
 @Inject
 @Route('author')
 export class AuthorController extends BaseController {

@@ -8,9 +8,11 @@ import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as nunjucks from 'nunjucks';
 import * as mvc from 'express-mvc-ts';
+import configNunjucks from './core/express-nunjucks';
+import * as filters from './filters';
 
 export class Server {
-  public app : express.Express;
+  private app : express.Express;
 
   public static bootstrap(): Server {
     return new Server();
@@ -19,11 +21,6 @@ export class Server {
   constructor() {
     this.app = express();
     this.config();
-    this.api();
-  }
-
-  api() : void {
-
   }
 
   config() : void {
@@ -32,11 +29,12 @@ export class Server {
     this.app.use(bodyParser.urlencoded({extended:false}));
     this.app.use(cookieParser());
 
-    nunjucks.configure(path.join(__dirname, './views'),{
+    configNunjucks(path.join(__dirname, './views'),{
       autoescape:true,
       express:this.app,
       watch:true,
-    });
+      filters
+    });    
 
     this.app.set('view engine', 'html');
 
