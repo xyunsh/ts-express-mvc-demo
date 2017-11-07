@@ -1,7 +1,12 @@
-import { Inject, HttpGet, Route, Controller } from 'express-mvc-ts';
+import { Inject, HttpGet, Route, Controller, FromQuery, FromRoute, MetadataSymbols } from 'express-mvc-ts';
 
 import BaseController from '../Controller';
 import { Author } from '../../core/database';
+
+declare interface IParams {
+    a?: string;
+    b?: string;
+}
 
 @Inject
 @Route('author')
@@ -11,13 +16,6 @@ export class AuthorController extends BaseController {
         super();
     }
 
-    @HttpGet('q')
-    public async findAll() {
-        const result = await Author.findAll();
-
-        return this.json(result);
-    }
-
     @HttpGet('list')
     public async list(){
         const authors = await Author.findAll();
@@ -25,8 +23,8 @@ export class AuthorController extends BaseController {
         return this.view('authors', {authors});
     }
 
-    @HttpGet('view')
-    public async home(){
-        return this.view('home');
+    @HttpGet('query(/:id)')
+    public async details(id: number){
+        const author = await Author.getById(id);
     }
 }

@@ -4,6 +4,9 @@
 
 ### ts
 - [typescript-express-starter](https://github.com/blove/typescript-express-starter)
+- [从 JavaScript 到 TypeScript](http://tasaid.com/Blog/20171011231943.html)
 
-### 
+### refs
 - [nunjucks](https://mozilla.github.io/nunjucks/getting-started.html)
+- [sequelize-typescript](https://github.com/RobinBuschmann/sequelize-typescript)
+- [express-mvc-ts](https://github.com/boykathemad/express-mvc-ts)

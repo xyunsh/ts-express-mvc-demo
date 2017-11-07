@@ -12,7 +12,7 @@ import * as mvc from 'express-mvc-ts';
 import { IndexRoute } from './routes/index';
 
 export class Server {
-  public app : express.Application;
+  public app : express.Express;
 
   public static bootstrap(): Server {
     return new Server();

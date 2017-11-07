@@ -2,6 +2,6 @@
 
 <ul>
 {% for author in authors %}
-<li>{{author.name}}</li>
+<li><a href="/author/{{author.id}}">{{author.name}}</a></li>
 {% endfor %}
 </ul>
