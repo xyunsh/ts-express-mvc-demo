@@ -9,8 +9,6 @@ import * as bodyParser from 'body-parser';
 import * as nunjucks from 'nunjucks';
 import * as mvc from 'express-mvc-ts';
 
-import { IndexRoute } from './routes/index';
-
 export class Server {
   public app : express.Express;
 

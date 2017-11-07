@@ -23,8 +23,10 @@ export class AuthorController extends BaseController {
         return this.view('authors', {authors});
     }
 
-    @HttpGet('query(/:id)')
-    public async details(id: number){
-        const author = await Author.getById(id);
+    @HttpGet(':id')
+    public async details(@FromRoute id: number){
+        const author = await Author.findById(id);
+
+        return this.view('author', {author});
     }
 }

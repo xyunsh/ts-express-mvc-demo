@@ -1,7 +1,12 @@
-<h1>authors list</h1>
+{% extends "../layout.html" %}
+
+{% block content %}
+<h1>{{ 'authors list' | capitalize }}</h1>
 
 <ul>
 {% for author in authors %}
 <li><a href="/author/{{author.id}}">{{author.name}}</a></li>
 {% endfor %}
 </ul>
+
+{% endblock %}
