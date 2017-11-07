@@ -10,3 +10,4 @@
 - [nunjucks](https://mozilla.github.io/nunjucks/getting-started.html)
 - [sequelize-typescript](https://github.com/RobinBuschmann/sequelize-typescript)
 - [express-mvc-ts](https://github.com/boykathemad/express-mvc-ts)
+- [sequelizejs](https://github.com/sequelize/sequelize)
