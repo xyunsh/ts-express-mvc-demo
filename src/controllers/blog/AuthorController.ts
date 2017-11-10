@@ -1,4 +1,4 @@
-import { Inject, HttpGet, Route, Controller, FromQuery, FromRoute, MetadataSymbols } from 'express-mvc-ts';
+import { Inject, HttpGet, Route, Controller, FromQuery, FromRoute, MetadataSymbols, RouteResult} from 'express-mvc-ts';
 import { Model } from 'sequelize-typescript';
 
 import BaseController from '../Controller';
@@ -18,11 +18,9 @@ export class AuthorController extends BaseController<Author> {
         return this.view('authors', {authors});
     }
 
-    /// 不能override BaseController的details路由
     @HttpGet('details/:id')
-    public async details(@FromRoute id: number){
+    public async details(@FromRoute id: number) : Promise<RouteResult>{
         const author : Author = await Author.findById<Author>(id);
-
         return this.view('author', {author});
     }
 }
