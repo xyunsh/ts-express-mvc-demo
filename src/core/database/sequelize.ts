@@ -7,7 +7,7 @@ const sequelize : Sequelize = new Sequelize({
     username: 'root',
     password: '',
     modelPaths: [
-        __dirname + '/blog',
+        __dirname + '/blog/',
     ]
 });
 

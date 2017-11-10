@@ -1,7 +1,7 @@
 import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table
-export class Author extends Model<Author>{
+export class Blog extends Model<Blog>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true
@@ -9,5 +9,8 @@ export class Author extends Model<Author>{
     id: number;
 
     @Column(DataType.STRING)
-    name: string;
+    title: string;
+
+    @Column
+    content: string;
 }

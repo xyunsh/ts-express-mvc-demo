@@ -1,13 +1,13 @@
 import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table
-export class Author extends Model<Author>{
+export class Comment extends Model<Comment>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true
     })
     id: number;
 
-    @Column(DataType.STRING)
-    name: string;
+    @Column
+    content: string;
 }

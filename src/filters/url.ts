@@ -3,5 +3,5 @@ export function url(path: string) : string {
 }
 
 export function authorDetails(author:{id:number}): string {
-    return url(`author/${author.id}`);
+    return url(`author/details/${author.id}`);
 }

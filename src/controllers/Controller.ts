@@ -1,6 +1,20 @@
 import { Model } from 'sequelize-typescript';
-import { Controller, Inject, Request, Route, HttpGet } from 'express-mvc-ts';
+import { Controller as MVCController, Inject, Request, Route, HttpGet, FromRoute, RouteResult} from 'express-mvc-ts';
 
-export default class BaseController extends Controller {
+export default abstract class Controller<T extends Model<T>> extends MVCController {  
+    constructor(private model: typeof Model){
+        super();
+    }
 
+    @HttpGet
+    public async getAll(){
+        const list : T[] = await this.model.findAll<T>();    
+        return this.json(list);
+    }
+
+    @HttpGet('details/:id')
+    public async details(@FromRoute id:number):Promise<RouteResult>{
+        const o : T = await this.model.findById<T>(id);
+        return this.json(o);
+    }
 }

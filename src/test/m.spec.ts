@@ -7,7 +7,7 @@ export class B {
      * mothodb
      */
     public mb() {
-        console.log('mb');
+        console.log('B mb');
     }
 }
 
@@ -15,11 +15,11 @@ export class C extends B {
     /**
      * mc
      */
-    public mc() {
-        this.mb();
-        console.log('mc');
+    public mb() {
+        super.mb();
+        console.log('C mb');
     }
 }
 
 const c = new C();
-c.mc();
+c.mb();

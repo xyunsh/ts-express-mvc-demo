@@ -5,6 +5,8 @@
 ### ts
 - [typescript-express-starter](https://github.com/blove/typescript-express-starter)
 - [从 JavaScript 到 TypeScript](http://tasaid.com/Blog/20171011231943.html)
+- [www.typescriptlang.org](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+- [https://github.com/Microsoft/TypeScript](https://github.com/Microsoft/TypeScript)
 
 ### refs
 - [express](http://www.expressjs.com.cn/)

@@ -1,1 +1,0 @@
-export { IndexController } from './home/IndexController';
