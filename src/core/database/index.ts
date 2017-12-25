@@ -1,9 +1,20 @@
-import sequelize  from './sequelize';
+import { employees, sakila}  from './sequelize';
 
-export { Author } from './blog/Author';
-export { Blog } from './blog/Blog';
-export { Comment } from './blog/Comment';
+import Employee from './employees/Employee';
+import Department from './employees/Department';
+import Salary from './employees/Salary';
+
+import Actor from './sakila/Actor';
+import Address from './sakila/Address';
 
 export {
-    sequelize
+    employees,
+    sakila,
+
+    Department,
+    Employee,
+    Salary,
+
+    Address,
+    Actor,
 }

@@ -1,0 +1,16 @@
+{% extends "../layout.html" %}
+
+{% block title %}Authors list{% endblock %}
+
+{% block content %}
+<h1>{{ 'employee list' | capitalize }}</h1>
+
+{{super()}}
+<ul>
+{% for employee in employees %}
+    <li><a href="{{employee|employeeDetails}}">{{employee.first_name}} {{employee.last_name}}</a></li>
+{% endfor %}
+</ul>
+
+<a href="{{''|employeeAdd}}">添加</a>
+{% endblock %}

@@ -8,7 +8,7 @@ export default abstract class Controller<T extends Model<T>> extends MVCControll
 
     @HttpGet
     public async getAll(){
-        const list : T[] = await this.model.findAll<T>();    
+        const list : T[] = await this.model.findAll<T>({ limit: 10 });    
         return this.json(list);
     }
 

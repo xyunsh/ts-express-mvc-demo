@@ -2,10 +2,10 @@ export function url(path: string) : string {
     return `/${path}`;
 }
 
-export function authorDetails(author:{id:number}): string {
-    return url(`author/details/${author.id}`);
+export function employeeDetails(employee:{id:number}): string {
+    return url(`employee/details/${employee.id}`);
 }
 
-export function authorAdd() : string {
-    return url('author/add');
+export function employeeAdd() : string {
+    return url('employee/add');
 }

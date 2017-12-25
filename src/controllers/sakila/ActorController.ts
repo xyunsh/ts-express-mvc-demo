@@ -2,12 +2,12 @@ import { Inject, HttpGet, Route, Controller, FromQuery, FromRoute, MetadataSymbo
 import { Model } from 'sequelize-typescript';
 
 import BaseController from '../Controller';
-import { Blog } from '../../core/database';
+import { Actor } from '../../core/database';
 
 @Inject
-@Route('blog')
-export class BlogController extends BaseController<Blog> {
+@Route('actor')
+export class ActorController extends BaseController<Actor> {
     constructor(){
-        super(Blog);
+        super(Actor);
     }
 }

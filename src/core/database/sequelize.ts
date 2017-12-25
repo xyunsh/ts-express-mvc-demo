@@ -1,14 +1,29 @@
 import { Sequelize } from 'sequelize-typescript';
 
-const sequelize : Sequelize = new Sequelize({
-    name: 'blog',
+const employees : Sequelize = new Sequelize({
+    name: 'employees',
     dialect: 'mysql',
     host: 'localhost',
     username: 'root',
     password: '',
     modelPaths: [
-        __dirname + '/blog/',
+        __dirname + '/employees',
     ]
 });
 
-export default sequelize;
+
+const sakila : Sequelize = new Sequelize({
+   name: 'sakila',
+   dialect: 'mysql',
+   host: 'localhost',
+   username: 'root',
+   password: '',
+   modelPaths: [
+       __dirname + '/sakila'
+   ] 
+});
+
+export {
+    employees,
+    sakila
+}
