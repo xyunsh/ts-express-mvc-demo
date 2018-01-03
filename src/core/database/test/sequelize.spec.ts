@@ -1,7 +1,7 @@
-import { Author, sequelize, IAuthor } from '../';
+import { Actor, } from '../';
 
 
-Author.findAll<Author>({raw:true}).then(authors=>{
-    console.log('authors===============>', authors);
+Actor.findAll<Actor>({raw:true}).then(actors=>{
+    console.log('actors===============>', actors);
 });
 

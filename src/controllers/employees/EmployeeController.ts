@@ -11,18 +11,12 @@ export class EmployeeController extends BaseController<Employee> {
         super(Employee);
     }
 
-    @HttpGet('query')
-    public async query(){
-        const employees = await Employee.findAll<Employee>({ limit: 10 });
-
-        return this.json( { employees } );
-    }
-
     @HttpGet('list')
     public async list(){
         const employees = await Employee.findAll<Employee>({ limit: 10});
 
-        return this.view( 'employees', { employees } );
+        return this.json({ employees });
+        //return this.view( 'employees', { employees } );
     }
 
     @HttpGet('details/:id')

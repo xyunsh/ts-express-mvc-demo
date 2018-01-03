@@ -15,8 +15,11 @@ export class DepartmentController extends BaseController<Department> {
     public async list(){
         const depts = await Department.findAll<Department>({ limit: 1 });
 
-        console.log('depts', depts);
+        console.log('depts', depts)
 
         return this.json( { depts } );
     }
 }
+
+
+//console.log("DepartmentController.prototype", DepartmentController.prototype, Controller.prototype);

@@ -28,7 +28,7 @@ class Controller extends express_mvc_ts_1.Controller {
     }
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const list = yield this.model.findAll();
+            const list = yield this.model.findAll({ limit: 10 });
             return this.json(list);
         });
     }
@@ -53,4 +53,5 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Controller.prototype, "details", null);
 exports.default = Controller;
+console.log("MVCController.prototype=>", express_mvc_ts_1.Controller.prototype);
 //# sourceMappingURL=Controller.js.map

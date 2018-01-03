@@ -4,8 +4,12 @@ function url(path) {
     return `/${path}`;
 }
 exports.url = url;
-function authorDetails(author) {
-    return url(`author/details/${author.id}`);
+function employeeDetails(employee) {
+    return url(`employee/details/${employee.id}`);
 }
-exports.authorDetails = authorDetails;
+exports.employeeDetails = employeeDetails;
+function employeeAdd() {
+    return url('employee/add');
+}
+exports.employeeAdd = employeeAdd;
 //# sourceMappingURL=url.js.map

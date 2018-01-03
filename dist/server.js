@@ -31,7 +31,7 @@ class Server {
         this.app.set('view engine', 'html');
         this.app.use(express.static(path.join(__dirname, '../public')));
         mvc.setup(this.app, {
-            controllerDir: path.join(__dirname, './controllers'),
+            controllerDir: path.join(__dirname, './controllers/employees'),
             debugRoutes: true
         });
     }
