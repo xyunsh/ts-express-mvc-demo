@@ -23,6 +23,17 @@ const sakila : Sequelize = new Sequelize({
    ] 
 });
 
+const stu : Sequelize = new Sequelize({
+    name: 'stu',
+    dialect: 'mysql',
+    host: 'localhost',
+    username: 'root',
+    password: '',
+    modelPaths: [
+        __dirname + '/stu'
+    ] 
+ });
+
 export {
     employees,
     sakila
