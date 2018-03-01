@@ -13,7 +13,7 @@ export default abstract class Controller<T extends Model<T>> extends MVCControll
     }
 
     @HttpGet('details/:id')
-    public async details(@FromRoute id:number):Promise<RouteResult>{
+    public async details(@FromRoute id:number|string):Promise<RouteResult>{
         const o : T = await this.model.findById<T>(id);
         return this.json(o);
     }

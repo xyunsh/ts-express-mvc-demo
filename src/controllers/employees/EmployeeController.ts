@@ -11,14 +11,6 @@ export class EmployeeController extends BaseController<Employee> {
         super(Employee);
     }
 
-    @HttpGet('list')
-    public async list(){
-        const employees = await Employee.findAll<Employee>({ limit: 10});
-
-        return this.json({ employees });
-        //return this.view( 'employees', { employees } );
-    }
-
     @HttpGet('details/:id')
     public async details(@FromRoute id: number) : Promise<RouteResult>{
         const employee : Employee = await Employee.findById<Employee>(id);
@@ -26,17 +18,5 @@ export class EmployeeController extends BaseController<Employee> {
         return this.json( employee );
 
         //return this.view( 'employee', { employee } );
-    }
-
-    @HttpGet
-    public async add() {
-        return this.view('add');
-    }
-
-    @HttpPost('add')
-    public async insert(@FromBody employee:Employee){
-        const result = await Employee.insertOrUpdate(employee);
-
-        return this.redirect('/employee/list');
     }
 }

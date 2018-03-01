@@ -1,4 +1,4 @@
-import { Inject, HttpGet, Route, Controller, FromQuery, FromRoute, MetadataSymbols } from 'express-mvc-ts';
+import { Inject, HttpGet, Route, Controller, FromQuery, FromRoute, MetadataSymbols, RouteResult } from 'express-mvc-ts';
 import { Model } from 'sequelize-typescript';
 
 import BaseController from '../Controller';
@@ -10,14 +10,14 @@ export class DepartmentController extends BaseController<Department> {
     constructor(){
         super(Department);
     }
+    
+    @HttpGet('details/:id')
+    public async details(@FromRoute id: string) : Promise<RouteResult>{
+        const dept : Department = await Department.findById<Department>(id);
 
-    @HttpGet('list')
-    public async list(){
-        const depts = await Department.findAll<Department>({ limit: 1 });
+        return this.json( dept );
 
-        console.log('depts', depts)
-
-        return this.json( { depts } );
+        //return this.view( 'employee', { employee } );
     }
 }
 
