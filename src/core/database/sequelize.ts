@@ -23,18 +23,19 @@ const sakila : Sequelize = new Sequelize({
    ] 
 });
 
-const stu : Sequelize = new Sequelize({
-    name: 'stu',
+const auth : Sequelize = new Sequelize({
+    name: 'auth',
     dialect: 'mysql',
     host: 'localhost',
     username: 'root',
     password: '',
     modelPaths: [
-        __dirname + '/stu'
+        __dirname + '/auth'
     ] 
  });
 
 export {
     employees,
-    sakila
+    sakila,
+    auth
 }
