@@ -7,6 +7,8 @@ import Salary from './employees/Salary';
 import Actor from './sakila/Actor';
 import Address from './sakila/Address';
 
+import User from './auth/User';
+
 export {
     employees,
     sakila,
@@ -17,4 +19,6 @@ export {
 
     Address,
     Actor,
+
+    User,
 }

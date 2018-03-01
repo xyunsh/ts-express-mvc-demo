@@ -9,8 +9,9 @@ import RoleRight from './RoleRight';
 export default class Right extends Model<Right> {
 
   @Column({
-    type:DataType.NUMBER,
+    type:DataType.INTEGER,
     primaryKey: true,
+    autoIncrement: true,
   })
   id: number;
 

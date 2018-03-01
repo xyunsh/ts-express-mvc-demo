@@ -6,15 +6,13 @@ import UserRole from './UserRole';
 @Table({ tableName:'user'} )
 export default class User extends Model<User>{
     @Column({
-        type:DataType.NUMBER,
+        type:DataType.INTEGER,
         primaryKey: true,
         autoIncrement: true
     })
     id: number;
 
-    @Column({
-        type:DataType.STRING
-    })
+    @Column
     login_name: string;
 
     @Column

@@ -6,8 +6,9 @@ import Right from './Right';
 @Table({ tableName:'privilege'} )
 export default class Privilege extends Model<Privilege>{
     @Column({
-        type:DataType.NUMBER,
+        type:DataType.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     })
     id: number;
 

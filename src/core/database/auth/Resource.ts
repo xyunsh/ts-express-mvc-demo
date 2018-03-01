@@ -5,8 +5,9 @@ import Right from './Right';
 @Table({ tableName:'resource'} )
 export default class Resource extends Model<Resource>{
     @Column({
-        type:DataType.NUMBER,
+        type:DataType.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     })
     id: number;
 

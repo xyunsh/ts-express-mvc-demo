@@ -8,8 +8,9 @@ import RoleRight from './RoleRight';
 @Table({ tableName:'role'} )
 export default class Role extends Model<Role>{
     @Column({
-        type:DataType.NUMBER,
+        type:DataType.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     })
     id: string;
 
