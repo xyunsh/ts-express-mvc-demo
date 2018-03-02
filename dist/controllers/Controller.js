@@ -49,9 +49,8 @@ __decorate([
     express_mvc_ts_1.HttpGet('details/:id'),
     __param(0, express_mvc_ts_1.FromRoute),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Controller.prototype, "details", null);
 exports.default = Controller;
-console.log("MVCController.prototype=>", express_mvc_ts_1.Controller.prototype);
 //# sourceMappingURL=Controller.js.map

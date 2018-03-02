@@ -23,4 +23,15 @@ const sakila = new sequelize_typescript_1.Sequelize({
     ]
 });
 exports.sakila = sakila;
+const auth = new sequelize_typescript_1.Sequelize({
+    name: 'auth',
+    dialect: 'mysql',
+    host: 'localhost',
+    username: 'root',
+    password: '',
+    modelPaths: [
+        __dirname + '/auth'
+    ]
+});
+exports.auth = auth;
 //# sourceMappingURL=sequelize.js.map

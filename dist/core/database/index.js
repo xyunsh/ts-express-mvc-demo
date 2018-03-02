@@ -13,4 +13,6 @@ const Actor_1 = require("./sakila/Actor");
 exports.Actor = Actor_1.default;
 const Address_1 = require("./sakila/Address");
 exports.Address = Address_1.default;
+const User_1 = require("./auth/User");
+exports.User = User_1.default;
 //# sourceMappingURL=index.js.map

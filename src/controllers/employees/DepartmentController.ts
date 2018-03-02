@@ -12,7 +12,7 @@ export class DepartmentController extends BaseController<Department> {
     }
     
     @HttpGet('details/:id')
-    public async details(@FromRoute id: string) : Promise<RouteResult>{
+    public async details(@FromRoute id: number) : Promise<RouteResult>{
         const dept : Department = await Department.findById<Department>(id);
 
         return this.json( dept );
@@ -20,6 +20,3 @@ export class DepartmentController extends BaseController<Department> {
         //return this.view( 'employee', { employee } );
     }
 }
-
-
-//console.log("DepartmentController.prototype", DepartmentController.prototype, Controller.prototype);

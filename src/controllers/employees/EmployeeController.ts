@@ -11,12 +11,12 @@ export class EmployeeController extends BaseController<Employee> {
         super(Employee);
     }
 
-    @HttpGet('details/:id')
-    public async details(@FromRoute id: number) : Promise<RouteResult>{
-        const employee : Employee = await Employee.findById<Employee>(id);
+    // @HttpGet('details/:id')
+    // public async details(@FromRoute id: number) : Promise<RouteResult>{
+    //     const employee : Employee = await Employee.findById<Employee>(id);
 
-        return this.json( employee );
+    //     return this.json( employee );
 
-        //return this.view( 'employee', { employee } );
-    }
+    //     //return this.view( 'employee', { employee } );
+    // }
 }
