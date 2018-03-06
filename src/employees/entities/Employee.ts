@@ -2,15 +2,15 @@ import { Model, Table, Column, DataType, BelongsTo, HasOne, ForeignKey, HasMany,
 
 import { Gender } from '../enums';
 
-import Salary from './Salary';
-import DeptEmp from './DeptEmp';
-import Title from './Title';
+import { Salary } from './Salary';
+import { DeptEmp } from './DeptEmp';
+import { Title } from './Title';
 
 @Table({tableName:'employees'})
 @DefaultScope({
     include:[()=> Salary]
 })
-export default class Employee extends Model<Employee>{
+export class Employee extends Model<Employee>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true,

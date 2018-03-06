@@ -1,7 +1,7 @@
 import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table({ tableName:'dept_manager' })
-export default class DeptManager extends Model<DeptManager>{
+export class DeptManager extends Model<DeptManager>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true

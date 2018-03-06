@@ -7,42 +7,31 @@ import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as nunjucks from 'nunjucks';
-import * as mvc from 'express-mvc-ts';
+import { NestFactory } from '@nestjs/core';
+
 import configNunjucks from './core/express-nunjucks';
 import * as filters from './filters';
+import { ApplicationModule } from './app.module';
 
-export class Server {
-  private app : express.Express;
+async function bootstrap() {
+    const app = await NestFactory.create( ApplicationModule );
 
-  public static bootstrap(): Server {
-    return new Server();
-  }
-
-  constructor() {
-    this.app = express();
-    this.config();
-  }
-
-  config() : void {
-    this.app.use(logger('dev'));
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({extended:false}));
-    this.app.use(cookieParser());
+    app.use(logger('dev'))
+        .use(bodyParser.json())
+        .use(bodyParser.urlencoded({extended:false}))
+        .use(cookieParser())
+        .use(express.static(path.join(__dirname,'../public')));
 
     configNunjucks(path.join(__dirname, './views'),{
-      autoescape:true,
-      express:this.app,
-      watch:true,
-      filters
+        autoescape:true,
+        express:app,
+        watch:true,
+        filters
     });    
 
-    this.app.set('view engine', 'html');
+    app.set('view engine', 'html');
 
-    this.app.use(express.static(path.join(__dirname,'../public')));
-
-    mvc.setup(this.app, {
-      controllerDir: path.join(__dirname, './controllers'),
-      debugRoutes:true
-    });
-  }
+    await app.listen(3000);
 }
+
+bootstrap();

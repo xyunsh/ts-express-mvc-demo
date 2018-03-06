@@ -14,3 +14,4 @@
 - [sequelize-typescript](https://github.com/RobinBuschmann/sequelize-typescript)
 - [express-mvc-ts](https://github.com/boykathemad/express-mvc-ts)
 - [sequelizejs](https://github.com/sequelize/sequelize)
+- [nestjs中文文档](https://exlley.gitbooks.io/nest-js/content/yi-lai-zhu-ru.html)

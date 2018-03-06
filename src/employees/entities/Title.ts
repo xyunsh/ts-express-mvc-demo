@@ -1,7 +1,7 @@
 import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table({tableName:'titles'})
-export default class Title extends Model<Title>{
+export class Title extends Model<Title>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true

@@ -1,13 +1,13 @@
 import { Model, Table, Column, DataType, HasMany, DefaultScope } from 'sequelize-typescript';
 
-import DeptEmp from './DeptEmp';
-import DeptManager from './DeptManager';
+import { DeptEmp } from './DeptEmp';
+import { DeptManager } from './DeptManager';
 
 @Table({ tableName:'departments'} )
 // @DefaultScope({
 //     include:[()=>DeptEmp]
 // })
-export default class Department extends Model<Department>{
+export  class Department extends Model<Department>{
     @Column({
         type:DataType.STRING,
         primaryKey: true,
