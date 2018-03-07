@@ -20,7 +20,26 @@ export const databaseProviders = [
 
             return employees;
         }
-    }
+    },
+    {
+        provide: 'authDatabase',
+        useFactory: async () => {
+            const auth : Sequelize = new Sequelize({
+                name: 'auth',
+                dialect: 'mysql',
+                host: 'localhost',
+                username: 'root',
+                password: '',
+                modelPaths: [
+                    path.join(__dirname, '../auth/entities'),
+                ]
+            });
+
+            await auth.sync();
+
+            return auth;
+        }
+    },
 ];
 
 // const sakila : Sequelize = new Sequelize({

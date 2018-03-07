@@ -6,7 +6,7 @@ import { Right } from './Right';
 @Table({ tableName:'privilege'} )
 export class Privilege extends Model<Privilege>{
     @Column({
-        type:DataType.NUMBER,
+        type:DataType.INTEGER,
         primaryKey: true,
     })
     id: number;

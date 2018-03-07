@@ -8,7 +8,7 @@ import { RoleRight } from './RoleRight';
 @Table({ tableName:'role'} )
 export class Role extends Model<Role>{
     @Column({
-        type:DataType.NUMBER,
+        type:DataType.INTEGER,
         primaryKey: true,
     })
     id: string;

@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { EmployeesModule } from './employees.module';
+import { RestModule } from './rest.module';
+import { MvcModule } from './mvc.module';
 
-
+// path property to modules
+// https://github.com/nestjs/nest/pull/297
 @Module({
-  imports: [ EmployeesModule ],
+  imports: [ RestModule ],
   controllers: [ ],
   components: [ ],
 })

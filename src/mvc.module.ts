@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { DatabaseModule } from './database/database.module';
 import { employeesProviders } from './employees/employees.providers';
-import controllers from './controllers/employees';
+import controllers from './mvc/controllers/';
 import { EmployeeService } from './services/employees/employee.service';
 
 @Module({
@@ -10,6 +10,6 @@ import { EmployeeService } from './services/employees/employee.service';
     controllers,
     components: [ EmployeeService, ...employeesProviders ]
 })
-export class EmployeesModule{
+export class MvcModule{
     
 }
