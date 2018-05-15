@@ -12,6 +12,8 @@ import { NestFactory } from '@nestjs/core';
 import configNunjucks from './core/express-nunjucks';
 import * as filters from './filters';
 import { ApplicationModule } from './app.module';
+import { AnyExceptionFilter } from './core/filters/AnyExceptionFilter';
+import { HttpExceptionFilter } from './core/filters/HttpExceptionFilter';
 
 async function bootstrap() {
     const app = await NestFactory.create( ApplicationModule );
@@ -30,6 +32,8 @@ async function bootstrap() {
     });    
 
     app.set('view engine', 'html');
+
+    app.useGlobalFilters(new HttpExceptionFilter(), new AnyExceptionFilter());
 
     await app.listen(3000);
 }

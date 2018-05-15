@@ -10,4 +10,9 @@ export class DepartmentController extends BaseController<Department>{
     ){
         super(deptRepository);
     }
+
+    @Post()
+    async create( @Body() dto ){
+        
+    }
 }

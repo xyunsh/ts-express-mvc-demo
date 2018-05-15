@@ -18,6 +18,9 @@ export class Role extends Model<Role>{
     })
     display_name: string;
 
+    @Column({ type: DataType.BOOLEAN })
+    status: boolean;
+
     @BelongsToMany(() => Role, () => UserRole)
     users: User[];
 
