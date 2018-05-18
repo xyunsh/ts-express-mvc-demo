@@ -1,10 +1,7 @@
-import { DepartmentController, EmployeeController } from './employees/';
-import { AuthController, UserController } from './admin';
+import admin from './admin';
+import employees from './employees'
 
 export default [
-    DepartmentController,
-    EmployeeController,
-
-    UserController,
-    AuthController
+    ...employees,
+    ...admin
 ]

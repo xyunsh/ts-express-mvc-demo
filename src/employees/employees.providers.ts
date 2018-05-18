@@ -1,12 +1,6 @@
-import { Employee }  from './entities/Employee';
-import { Department } from './entities/Department';
+import { Employee, Department }  from './index';
 
 export const employeesProviders = [
-    {
-        provide: 'EmployeeRepository',
-        useValue: Employee
-    },{
-        provide: 'DepartmentRepository',
-        useValue: Department
-    }
+    { provide: 'EmployeeRepository', useValue: Employee },
+    { provide: 'DepartmentRepository', useValue: Department },
 ]

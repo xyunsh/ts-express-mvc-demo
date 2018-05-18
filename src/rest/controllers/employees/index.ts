@@ -1,2 +1,7 @@
-export { DepartmentController } from './department.controller';
-export { EmployeeController } from './employee.controller';
+import { DepartmentController } from './department.controller';
+import { EmployeeController } from './employee.controller';
+
+export default [
+    DepartmentController,
+    EmployeeController
+];

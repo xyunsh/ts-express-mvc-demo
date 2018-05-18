@@ -19,7 +19,7 @@ export default abstract class BaseController<T extends Model<T>>{
         return resultOK(o);
     }
 
-    @Get('query')
+    @Post('query')
     public async query(){
         const limit = 10;
 
@@ -30,7 +30,7 @@ export default abstract class BaseController<T extends Model<T>>{
         return resultOK({
             total: count,
             count: limit,
-            rows
+            entitis: rows
         });
     }
 }

@@ -2,6 +2,7 @@ import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/
 import { RestModule } from './rest.module';
 import { MvcModule } from './mvc.module';
 import { LoggerMiddleware } from './core/middlewares/LoggerMiddleware';
+import { AllowCrossMiddleware } from './core/middlewares/AllowCrossMiddleware';
 
 // path property to modules
 // https://github.com/nestjs/nest/pull/297
@@ -13,7 +14,7 @@ import { LoggerMiddleware } from './core/middlewares/LoggerMiddleware';
 export class ApplicationModule implements NestModule {
     configure(consumer: MiddlewaresConsumer) : void {
         consumer
-            .apply(LoggerMiddleware)
+            .apply([LoggerMiddleware, AllowCrossMiddleware])
             .with({ a: 'abc'}, { c: 'ddd'})
             .forRoutes(
                 { path: '*', method: RequestMethod.ALL }
