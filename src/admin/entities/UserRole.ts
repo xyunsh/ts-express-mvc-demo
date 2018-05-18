@@ -3,7 +3,7 @@ import { Model, Table, Column, DataType, HasMany, DefaultScope, ForeignKey } fro
 import { Role } from './Role';
 import { User } from './User';
 
-@Table({ tableName:'user_role'} )
+@Table({ tableName:'admin_user_role'} )
 export class UserRole extends Model<UserRole> {
 
   @ForeignKey(() => User)

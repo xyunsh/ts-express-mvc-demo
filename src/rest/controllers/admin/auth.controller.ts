@@ -1,8 +1,9 @@
 import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject } from '@nestjs/common';
-//import { resultOK } from '../../../utils/';
+
 import { resultOK } from '@utils/result';
+import { User, Role } from '@admin';
+
 import BaseController from '../../base.controller';
-import { User, Role } from '../../../auth/';
 
 export class LoginRequest {
     readonly login_name: string;

@@ -1,10 +1,9 @@
 import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany } from 'sequelize-typescript';
 
-import { Resource } from './Resource';
 import { Right } from './Right';
 
-@Table({ tableName:'privilege'} )
-export class Privilege extends Model<Privilege>{
+@Table({ tableName:'admin_resource'} )
+export class Resource extends Model<Resource>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true,
@@ -12,7 +11,7 @@ export class Privilege extends Model<Privilege>{
     id: number;
 
     @Column
-    display_name: string;
+    slug: string;
 
     @Column
     name: string;

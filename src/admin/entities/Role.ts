@@ -5,7 +5,7 @@ import { UserRole } from './UserRole';
 import { Right } from './Right';
 import { RoleRight } from './RoleRight';
 
-@Table({ tableName:'role'} )
+@Table({ tableName:'admin_role'} )
 export class Role extends Model<Role>{
     @Column({
         type:DataType.INTEGER,

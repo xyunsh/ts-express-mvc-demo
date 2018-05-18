@@ -1,7 +1,7 @@
 import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject } from '@nestjs/common';
+import { Department } from '@employees';
 
 import BaseController from '../../base.controller';
-import { Department } from '../../../employees/entities/Department';
 
 @Controller('dept')
 export class DepartmentController extends BaseController<Department>{

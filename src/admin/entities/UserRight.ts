@@ -1,16 +1,16 @@
 import { Model, Table, Column, DataType, HasMany, DefaultScope, ForeignKey } from 'sequelize-typescript';
 
-import { Role } from './Role';
+import { User } from './User';
 import { Right } from './Right';
 
-@Table({ tableName:'role_right'} )
-export class RoleRight extends Model<RoleRight> {
+@Table({ tableName:'admin_user_right'} )
+export class UserRight extends Model<UserRight> {
 
   @ForeignKey(() => Right)
   @Column
   right_id: number;
 
-  @ForeignKey(() => Role)
+  @ForeignKey(() => User)
   @Column
-  role_id: number;
+  user_id: number;
 }

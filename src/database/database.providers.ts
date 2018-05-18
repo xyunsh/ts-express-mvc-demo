@@ -22,16 +22,16 @@ export const databaseProviders = [
         }
     },
     {
-        provide: 'authDatabase',
+        provide: 'adminDatabase',
         useFactory: async () => {
             const auth : Sequelize = new Sequelize({
-                name: 'auth',
+                name: 'admin',
                 dialect: 'mysql',
                 host: 'localhost',
                 username: 'root',
                 password: '',
                 modelPaths: [
-                    path.join(__dirname, '../auth/entities'),
+                    path.join(__dirname, '../admin/entities'),
                 ]
             });
 

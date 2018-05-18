@@ -1,6 +1,6 @@
 import { Role } from './entities/Role';
 import { User } from './entities/User';
-import { Nav } from './entities/Nav';
+import { Menu } from './entities/Menu';
 import { Privilege } from './entities/Privilege';
 import { Resource } from './entities/Resource';
 import { Right } from './entities/Right';
@@ -10,8 +10,8 @@ import { UserRole } from './entities/UserRole';
 export {
     Role,
     User,
-    Nav,
+    Menu,
     Privilege,
     Resource,
     Right
-}
+};

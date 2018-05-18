@@ -5,7 +5,7 @@ import { Resource } from './Resource';
 import { Role } from './Role';
 import { RoleRight } from './RoleRight';
 
-@Table({ tableName:'right'} )
+@Table({ tableName:'admin_right'} )
 export class Right extends Model<Right> {
   @Column({
     type:DataType.INTEGER,

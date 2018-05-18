@@ -1,9 +1,19 @@
-import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany } from 'sequelize-typescript';
+import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany, CreatedAt, UpdatedAt } from 'sequelize-typescript';
 
 import { Role } from './Role';
 import { UserRole } from './UserRole';
+import { Right } from './Right';
+import { UserRight } from './UserRight';
 
-@Table({ tableName:'user'} )
+@Table({ 
+    tableName:'admin_user',
+    timestamps: true
+} )
+@DefaultScope({
+    attributes:{
+        exclude:['password_hashed', 'salt']
+    }
+})
 export class User extends Model<User>{
     @Column({
         type:DataType.INTEGER,
@@ -33,14 +43,20 @@ export class User extends Model<User>{
     mobile: string;
 
     @Column
-    create_time: Date;
-
-    @Column
-    create_ip: string;
+    created_ip: string;
 
     @Column
     status: number;
 
     @BelongsToMany(() => Role, () => UserRole)
     roles: Role[];
+
+    @BelongsToMany(() => Right, () => UserRight)
+    rights: Right[];
+
+    @CreatedAt
+    created_at: Date;
+
+    @UpdatedAt
+    updated_at: Date;
 }

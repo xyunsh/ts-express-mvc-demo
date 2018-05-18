@@ -1,6 +1,6 @@
 import { Role, User } from './index';
 
-export const authProviders = [
+export const adminProviders = [
     {
         provide: 'RoleRepository',
         useValue: Role

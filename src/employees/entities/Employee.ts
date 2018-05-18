@@ -7,9 +7,9 @@ import { DeptEmp } from './DeptEmp';
 import { Title } from './Title';
 
 @Table({tableName:'employees'})
-@DefaultScope({
-    include:[()=> Salary]
-})
+// @DefaultScope({
+//     include:[()=> Salary]
+// })
 export class Employee extends Model<Employee>{
     @Column({
         type:DataType.INTEGER,

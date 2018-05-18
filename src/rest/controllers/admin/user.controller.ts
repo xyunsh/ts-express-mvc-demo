@@ -1,7 +1,8 @@
 import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject } from '@nestjs/common';
 
+import { User } from '@admin';
+
 import BaseController from '../../base.controller';
-import { User } from '../../../auth/entities/User';
 
 @Controller('user')
 export class UserController extends BaseController<User>{

@@ -9,8 +9,8 @@
         "emitDecoratorMetadata": true,
         "baseUrl": ".",
         "paths": {
-            "@utils/*": [
-                "src/utils/*"
+            "@*": [
+                "src/*"
             ]
         }    
     },
