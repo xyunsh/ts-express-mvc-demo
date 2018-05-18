@@ -4,9 +4,6 @@ import { Employee } from './Employee';
 import { Department } from './Department';
 
 @Table({tableName:'dept_emp'})
-// @DefaultScope({
-//     include:[()=>Department, ()=>Employee]
-// })
 export class DeptEmp extends Model<DeptEmp>{
     @Column({
         type:DataType.INTEGER,

@@ -1,6 +1,6 @@
 import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject } from '@nestjs/common';
 
-import BaseController from '../../baseController';
+import BaseController from '../../base.controller';
 import { Employee } from '../../../employees/entities/Employee';
 import { EmployeeService } from '../../../services/employees/employee.service';
 

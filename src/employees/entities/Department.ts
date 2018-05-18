@@ -4,9 +4,6 @@ import { DeptEmp } from './DeptEmp';
 import { DeptManager } from './DeptManager';
 
 @Table({ tableName:'departments'} )
-// @DefaultScope({
-//     include:[()=>DeptEmp]
-// })
 export  class Department extends Model<Department>{
     @Column({
         type:DataType.STRING,

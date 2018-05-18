@@ -1,5 +1,4 @@
-import { Role }  from './entities/Role';
-import { User } from './entities/User';
+import { Role, User } from './index';
 
 export const authProviders = [
     {
