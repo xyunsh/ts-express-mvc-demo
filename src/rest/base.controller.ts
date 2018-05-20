@@ -1,5 +1,5 @@
 import { Model } from 'sequelize-typescript';
-import { Controller, Get, Post, HttpCode, Param } from '@nestjs/common';
+import { Controller, Get, Post, HttpCode, Param, Body } from '@nestjs/common';
 import { resultOK, Result } from '@utils/result';
 
 export default abstract class BaseController<T extends Model<T>>{  
@@ -32,5 +32,20 @@ export default abstract class BaseController<T extends Model<T>>{
             count: limit,
             entitis: rows
         });
+    }
+
+    @Post('modify')
+    public async modify(@Body() inputs){
+        const { id, ...rest } = inputs;
+
+        let result = null;
+
+        if(id){
+            result = await this.repository.update(rest, {where:{id}});
+        }else{
+            result = await this.repository.create( rest );
+        }
+        
+        return resultOK(result);
     }
 }

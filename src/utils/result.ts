@@ -11,6 +11,6 @@ export const result = ( code: number, message: string, data: any ) => {
     return new Result(code, message, data);
 }
 
-export const resultOK = (data: any) => {
+export const resultOK = (data: any = null ) => {
     return result( 200, "OK", data);
 }

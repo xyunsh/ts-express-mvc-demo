@@ -1,4 +1,4 @@
-import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany } from 'sequelize-typescript';
+import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany, CreatedAt, UpdatedAt } from 'sequelize-typescript';
 
 import { Right } from './Right';
 
@@ -18,4 +18,10 @@ export class Resource extends Model<Resource>{
 
     @HasMany(() => Right)
     rights: Right[];
+
+    @CreatedAt
+    created_at: Date;
+
+    @UpdatedAt
+    updated_at: Date;
 }
