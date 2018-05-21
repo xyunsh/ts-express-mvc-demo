@@ -1,9 +1,12 @@
-import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany } from 'sequelize-typescript';
+import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany, CreatedAt, UpdatedAt } from 'sequelize-typescript';
 
 import { Resource } from './Resource';
 import { Right } from './Right';
 
-@Table({ tableName:'admin_privilege'} )
+@Table({ 
+    tableName:'admin_privilege',    
+    timestamps: true
+})
 export class Privilege extends Model<Privilege>{
     @Column({
         type:DataType.INTEGER,
@@ -20,4 +23,10 @@ export class Privilege extends Model<Privilege>{
 
     @HasMany(() => Right)
     rights: Right[];
+
+    @CreatedAt
+    created_at: Date;
+
+    @UpdatedAt
+    updated_at: Date;
 }

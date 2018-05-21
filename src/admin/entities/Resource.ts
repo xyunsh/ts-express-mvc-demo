@@ -2,7 +2,10 @@ import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany, C
 
 import { Right } from './Right';
 
-@Table({ tableName:'admin_resource'} )
+@Table({ 
+    tableName:'admin_resource',
+    timestamps: true
+} )
 export class Resource extends Model<Resource>{
     @Column({
         type:DataType.INTEGER,

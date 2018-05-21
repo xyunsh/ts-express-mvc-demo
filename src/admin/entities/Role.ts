@@ -1,11 +1,14 @@
-import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany } from 'sequelize-typescript';
+import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany, CreatedAt, UpdatedAt } from 'sequelize-typescript';
 
 import { User } from './User';
 import { UserRole } from './UserRole';
 import { Right } from './Right';
 import { RoleRight } from './RoleRight';
 
-@Table({ tableName:'admin_role'} )
+@Table({ 
+    tableName:'admin_role',
+    timestamps: true
+} )
 export class Role extends Model<Role>{
     @Column({
         type:DataType.INTEGER,
@@ -17,7 +20,7 @@ export class Role extends Model<Role>{
     @Column({
         type:DataType.STRING
     })
-    display_name: string;
+    name: string;
 
     @Column({ type: DataType.BOOLEAN })
     status: boolean;
@@ -27,4 +30,10 @@ export class Role extends Model<Role>{
 
     @BelongsToMany(() => Right, () => RoleRight)
     rights: Right[];
+
+    @CreatedAt
+    created_at: Date;
+
+    @UpdatedAt
+    updated_at: Date;
 }
