@@ -20,11 +20,13 @@ export default abstract class BaseController<T extends Model<T>>{
     }
 
     @Post('query')
-    public async query(){
-        const limit = 10;
+    public async query(@Body() inputs){
+        const { offset = 0, limit = 10, order = [['id', 'DESC']] } = inputs;
 
         const { count, rows } = await this.repository.findAndCount({
-            limit
+            offset,
+            limit,
+            order
         });
 
         return resultOK({
@@ -38,14 +40,14 @@ export default abstract class BaseController<T extends Model<T>>{
     public async modify(@Body() inputs){
         const { id, ...rest } = inputs;
 
-        let result = null;
-
         if(id){
-            result = await this.repository.update(rest, {where:{id}});
+            await this.repository.update( rest, {where:{id}} );
+            
+            return resultOK(inputs);
         }else{
-            result = await this.repository.create( rest );
+            const result = await this.repository.create( rest );
+
+            return resultOK(result);
         }
-        
-        return resultOK(result);
     }
 }

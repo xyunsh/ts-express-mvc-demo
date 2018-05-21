@@ -8,6 +8,7 @@ export class Privilege extends Model<Privilege>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true,
+        autoIncrement:true
     })
     id: number;
 

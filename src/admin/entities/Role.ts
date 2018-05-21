@@ -10,6 +10,7 @@ export class Role extends Model<Role>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true,
+        autoIncrement:true
     })
     id: string;
 

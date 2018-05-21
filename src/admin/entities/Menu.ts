@@ -10,6 +10,7 @@ export class Menu extends Model<Menu>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true,
+        autoIncrement:true
     })
     id: number;
 

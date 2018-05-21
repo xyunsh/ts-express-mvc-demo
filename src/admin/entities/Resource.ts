@@ -7,6 +7,7 @@ export class Resource extends Model<Resource>{
     @Column({
         type:DataType.INTEGER,
         primaryKey: true,
+        autoIncrement:true
     })
     id: number;
 

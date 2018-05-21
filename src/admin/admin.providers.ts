@@ -1,8 +1,10 @@
-import { Role, User, Resource, Privilege } from './index';
+import { Role, User, Resource, Privilege, Menu } from './index';
 
 export const adminProviders = [
     { provide: 'RoleRepository', useValue: Role },
     { provide: 'UserRepository', useValue: User },
     { provide: 'ResourceRepository', useValue: Resource },
-    { provide: 'RoleRespository', useValue: Role }
+    { provide: 'RoleRepository', useValue: Role },
+    { provide: 'MenuRepository', useValue: Menu },
+    { provide: 'PrivilegeRepository', useValue: Privilege },
 ]
