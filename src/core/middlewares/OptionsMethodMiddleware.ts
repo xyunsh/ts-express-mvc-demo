@@ -1,8 +1,8 @@
-import { Middleware, NestMiddleware, ExpressMiddleware, Request, HttpStatus } from '@nestjs/common';
+import { Middleware, NestMiddleware, MiddlewareFunction, Request, HttpStatus } from '@nestjs/common';
 
 @Middleware()
 export class OptionsMethodMiddleware implements NestMiddleware {
-    async resolve(...args: any[]) : Promise<ExpressMiddleware> {
+    async resolve(...args: any[]) : Promise<MiddlewareFunction> {
         return async (req, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.header('Access-Control-Allow-Credentials',true);

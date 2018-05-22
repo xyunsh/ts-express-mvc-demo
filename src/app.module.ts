@@ -1,6 +1,10 @@
-import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { graphqlExpress } from 'apollo-server-express';
+import { GraphQLModule, GraphQLFactory } from '@nestjs/graphql';
+
 import { RestModule } from './rest.module';
 import { MvcModule } from './mvc.module';
+import { GraphQLModule as MyGraphQLModule } from './graphql.module';
 import { LoggerMiddleware } from './core/middlewares/LoggerMiddleware';
 import { AllowCrossMiddleware } from './core/middlewares/AllowCrossMiddleware';
 import { OptionsMethodMiddleware } from './core/middlewares/OptionsMethodMiddleware';
@@ -8,19 +12,25 @@ import { OptionsMethodMiddleware } from './core/middlewares/OptionsMethodMiddlew
 // path property to modules
 // https://github.com/nestjs/nest/pull/297
 @Module({
-    imports: [ RestModule, MvcModule ],
+    imports: [ RestModule, MvcModule, GraphQLModule, MyGraphQLModule ],
     controllers: [ ],
-    components: [ ],
+    providers: [ ],
 })
 export class ApplicationModule implements NestModule {
-    configure(consumer: MiddlewaresConsumer) : void {
-        consumer
-            .apply([LoggerMiddleware, AllowCrossMiddleware])
+
+    constructor(private readonly graphQLFactory: GraphQLFactory){
+
+    }
+
+    configure(consumer: MiddlewareConsumer) : void {
+        consumer.apply([LoggerMiddleware, AllowCrossMiddleware])
             //.with({ a: 'abc'}, { c: 'ddd'})
-            .forRoutes(
-                { path: '*', method: RequestMethod.ALL }
-            );
+            .forRoutes('*');
         
-        consumer.apply(OptionsMethodMiddleware).forRoutes( { path: '*', method: RequestMethod.OPTIONS });
+        //consumer.apply(OptionsMethodMiddleware).forRoutes( { path: '*', method: RequestMethod.OPTIONS });
+
+        const typeDefs = this.graphQLFactory.mergeTypesByPaths('./**/*.graphql');
+        const schema = this.graphQLFactory.createSchema({ typeDefs });
+        consumer.apply(graphqlExpress( req=> ({ schema:{}, rootValue: req}))).forRoutes('/graphql');
     }
 }

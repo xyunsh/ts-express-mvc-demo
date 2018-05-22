@@ -8,7 +8,7 @@ import { EmployeeService } from './services/employees/employee.service';
 @Module({
     imports: [ DatabaseModule ],
     controllers,
-    components: [ EmployeeService, ...employeesProviders ]
+    providers: [ EmployeeService, ...employeesProviders ]
 })
 export class MvcModule{
     

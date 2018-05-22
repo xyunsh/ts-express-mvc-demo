@@ -2,8 +2,13 @@ import { Model } from 'sequelize-typescript';
 import { Controller, Get, Post, HttpCode, Param, Body } from '@nestjs/common';
 import { resultOK, Result } from '@utils/result';
 
+// https://github.com/RobinBuschmann/sequelize-typescript/issues/232
+type NonAbstract<T> = {[P in keyof T]: T[P]}; // "abstract" gets lost here
+type Constructor<T> = (new () => T);
+type NonAbstractTypeOfModel<T> = Constructor<T> & NonAbstract<typeof Model>;
+
 export default abstract class BaseController<T extends Model<T>>{  
-    constructor(private repository: typeof Model){
+    constructor(private repository: NonAbstractTypeOfModel<T>){
 
     }
 

@@ -13,6 +13,6 @@ export class DepartmentController extends BaseController<Department>{
 
     @Post()
     async create( @Body() dto ){
-
+        await this.deptRepository.create({});
     }
 }
