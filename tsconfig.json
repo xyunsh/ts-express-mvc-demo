@@ -6,7 +6,13 @@
         "sourceMap": true,
         "watch": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "baseUrl": ".",
+        "paths": {
+            "@*": [
+                "src/*"
+            ]
+        }    
     },
     "include": [
         "./src/**/*"
