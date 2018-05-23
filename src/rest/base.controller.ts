@@ -47,8 +47,10 @@ export default abstract class BaseController<T extends Model<T>>{
 
         if(id){
             await this.repository.update( rest, {where:{id}} );
+
+            const result = await this.repository.findById(id);
             
-            return resultOK(inputs);
+            return resultOK(result);
         }else{
             const result = await this.repository.create( rest );
 
