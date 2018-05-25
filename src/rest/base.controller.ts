@@ -12,14 +12,14 @@ export default abstract class BaseController<T extends Model<T>>{
 
     }
 
-    @Get('list')
-    public async getAll(){
+    @Post('list')
+    public async list(){
         const list : T[] = await this.repository.findAll<T>({ limit: 10 });    
         return resultOK(list);
     }
 
-    @Get('details/:id')
-    public async details(@Param("id") id:number):Promise<Result>{
+    @Post('details/:id')
+    public async details(@Param("id") id:number) : Promise<Result>{
         const o : T = await this.repository.findById<T>(id);
         return resultOK(o);
     }
@@ -37,7 +37,7 @@ export default abstract class BaseController<T extends Model<T>>{
         return resultOK({
             total: count,
             count: limit,
-            entitis: rows
+            entities: rows
         });
     }
 
@@ -46,15 +46,15 @@ export default abstract class BaseController<T extends Model<T>>{
         const { id, ...rest } = inputs;
 
         if(id){
-            await this.repository.update( rest, {where:{id}} );
+            const o = await this.repository.findById(id);
 
-            const result = await this.repository.findById(id);
+            await o.update( rest );
             
-            return resultOK(result);
+            return resultOK(o);
         }else{
-            const result = await this.repository.create( rest );
+            const o = await this.repository.create( rest );
 
-            return resultOK(result);
+            return resultOK(o);
         }
     }
 }

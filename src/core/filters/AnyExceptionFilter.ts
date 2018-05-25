@@ -4,6 +4,11 @@ import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 export class AnyExceptionFilter implements ExceptionFilter {
     catch( exception: any, host: ArgumentsHost ){
 
+        console.error('======================================================================================>')
+        console.error( exception );
+        console.error('======================================================================================>')
+
+
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
         const request = ctx.getRequest();
@@ -12,7 +17,7 @@ export class AnyExceptionFilter implements ExceptionFilter {
             .status(500)
             .json({
                 statusCode: 500,
-                message: `It's a message from the exception filter`,
+                message: exception.message,
                 path: request.url
             });
     }
