@@ -1,5 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { Query, Mutation, Resolver, DelegateProperty, Subscription } from '@nestjs/graphql';
+import { GraphQLString } from 'graphql';
 import { Menu } from '@admin';
 
 export class MenuResolvers {

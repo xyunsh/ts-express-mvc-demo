@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod, Type } from '@nestjs/common';
 import { graphqlExpress } from 'apollo-server-express';
 import { GraphQLModule, GraphQLFactory } from '@nestjs/graphql';
 
@@ -7,7 +7,10 @@ import { MvcModule } from './mvc.module';
 import { GraphQLModule as MyGraphQLModule } from './graphql.module';
 import { LoggerMiddleware } from './core/middlewares/LoggerMiddleware';
 import { AllowCrossMiddleware } from './core/middlewares/AllowCrossMiddleware';
-import { OptionsMethodMiddleware } from './core/middlewares/OptionsMethodMiddleware';
+
+function test<T>(p:Type<T>){
+    console.log(p);
+}
 
 // path property to modules
 // https://github.com/nestjs/nest/pull/297
@@ -27,8 +30,6 @@ export class ApplicationModule implements NestModule {
             //.with({ a: 'abc'}, { c: 'ddd'})
             .forRoutes('*');
         
-        //consumer.apply(OptionsMethodMiddleware).forRoutes( { path: '*', method: RequestMethod.OPTIONS });
-
         const typeDefs = this.graphQLFactory.mergeTypesByPaths('./**/*.graphql');
         const schema = this.graphQLFactory.createSchema({ typeDefs });
         consumer.apply(graphqlExpress( req=> ({ schema:{}, rootValue: req}))).forRoutes('/graphql');

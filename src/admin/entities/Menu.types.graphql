@@ -1,7 +1,9 @@
 type Query {
-    query: [Menu]
+    query: [Menu],
+    details(id: ID!): Menu
 }
 
 type Menu {
-    name: String
+    id: Int,
+    title: String
 }
