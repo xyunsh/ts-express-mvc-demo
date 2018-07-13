@@ -1,12 +1,13 @@
 import { Model, Table, Column, DataType, HasMany, DefaultScope, BelongsToMany, ForeignKey, CreatedAt, UpdatedAt, AllowNull } from 'sequelize-typescript';
 
 import { Right } from './Right';
+import { IHierarchizable } from '@interface/IHierarchizable';
 
 @Table({ 
     tableName:'admin_menu',
     timestamps:true
 })
-export class Menu extends Model<Menu>{
+export class Menu extends Model<Menu> implements IHierarchizable {
     @Column({
         type:DataType.INTEGER,
         primaryKey: true,
@@ -18,6 +19,9 @@ export class Menu extends Model<Menu>{
         allowNull:false
     })
     title: string;
+
+    @Column
+    icon: string;
 
     @ForeignKey(() => Menu)
     @Column
@@ -43,4 +47,6 @@ export class Menu extends Model<Menu>{
 
     @UpdatedAt
     updated_at: Date;
+
+    children:Array<IHierarchizable>;
 }

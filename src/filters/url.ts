@@ -3,9 +3,9 @@ export function url(path: string) : string {
 }
 
 export function employeeDetails(employee:{id:number}): string {
-    return url(`employee/details/${employee.id}`);
+    return url(`emp/details/${employee.id}`);
 }
 
 export function employeeAdd() : string {
-    return url('employee/add');
+    return url('emp/add');
 }

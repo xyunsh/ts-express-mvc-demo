@@ -1,6 +1,6 @@
 import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject, } from '@nestjs/common';
 
-import { Employee } from '../../../employees/entities/Employee';
+import { Employee } from '@employees/entities/Employee';
 
 @Controller('emp')
 export class EmployeeController{
@@ -15,5 +15,15 @@ export class EmployeeController{
     public async details(@Param("id") id:number){
         const employee : Employee = await this.employeeRepository.findById<Employee>(id);
         return { employee };
+    }
+
+    @Get('list')
+    @Render('employee/list')
+    public async list(){
+        const employees = await this.employeeRepository.findAll<Employee>({
+            limit: 100
+        });
+
+        return { employees };
     }
 }

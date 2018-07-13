@@ -1,8 +1,8 @@
-import { Component, Inject } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 
 import { Employee } from '@employees';
 
-@Component()
+@Injectable()
 export class EmployeeService {
     constructor(
         @Inject('EmployeeRepository') private readonly employeeRepository: typeof Employee,

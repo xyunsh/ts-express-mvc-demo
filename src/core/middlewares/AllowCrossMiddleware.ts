@@ -1,6 +1,6 @@
-import { Middleware, NestMiddleware, MiddlewareFunction, Request } from '@nestjs/common';
+import { Injectable, NestMiddleware, MiddlewareFunction, Request } from '@nestjs/common';
 
-@Middleware()
+@Injectable()
 export class AllowCrossMiddleware implements NestMiddleware {
     async resolve(...args: any[]) : Promise<MiddlewareFunction> {
         return async (req, res, next) => {

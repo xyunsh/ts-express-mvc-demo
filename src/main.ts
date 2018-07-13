@@ -16,8 +16,8 @@ import { NestFactory } from '@nestjs/core';
 import configNunjucks from './core/express-nunjucks';
 import * as filters from './filters';
 import { ApplicationModule } from './app.module';
-import { AnyExceptionFilter } from './core/filters/AnyExceptionFilter';
-import { HttpExceptionFilter } from './core/filters/HttpExceptionFilter';
+import { AnyExceptionFilter } from '@core/filters/AnyExceptionFilter';
+import { HttpExceptionFilter } from '@core/filters/HttpExceptionFilter';
 
 async function bootstrap() {
     const app = await NestFactory.create( ApplicationModule );
@@ -28,7 +28,7 @@ async function bootstrap() {
         .use(cookieParser())
         .use(express.static(path.join(__dirname,'../public')));
 
-    configNunjucks(path.join(__dirname, './views'),{
+    configNunjucks(path.join(__dirname, './mvc/views'),{
         autoescape:true,
         express:app,
         watch:true,
