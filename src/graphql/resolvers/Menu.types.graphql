@@ -1,0 +1,11 @@
+type Query {
+    queryMenus: [Menu],
+    menu(id: ID!): Menu
+}
+
+type Menu {
+    id: Int,
+    title: String,
+    icon: String,
+    path: String
+}

@@ -1,0 +1,11 @@
+type Query {
+    queryResources:[Resource],
+    countResources: Int,
+    resource(id: ID!): Resource
+}
+
+type Resource {
+    id: Int,
+    name: String,
+    slug: String
+}

@@ -12,11 +12,13 @@ export class MenuResolvers {
     } 
 
     // http://localhost:3000/graphql?query={getMenus{id,title}}
-    @Query('getMenus')
-    async getMenus() {
+    @Query('queryMenus')
+    async query() {
         return await this.menuRepository.findAll();
     }
 
+    //http://localhost:3000/graphql?query={menu(id:1){id,title}}
+    //http://localhost:3000/graphql?query={id1:menu(id:1){id,title,icon}id2:menu(id:2){id,title,icon}}
     @Query('menu')
     async findOneById(obj, args, context, info) : Promise<Menu>{
         const { id } = args;

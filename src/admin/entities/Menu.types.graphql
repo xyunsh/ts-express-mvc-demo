@@ -1,9 +1,0 @@
-type Query {
-    getMenus: [Menu],
-    menu(id: ID!): Menu
-}
-
-type Menu {
-    id: Int,
-    title: String
-}
