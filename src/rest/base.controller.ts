@@ -12,7 +12,8 @@ export default abstract class BaseController<T extends Model<T>>{
 
     }
 
-    @Post('list')
+    //@Post('list')
+    @Get('list')
     public async list(){
         const list : T[] = await this.repository.findAll<T>({ limit: 10 });    
         return resultOK(list);
