@@ -1,5 +1,9 @@
 
 ## Web Rest Api & MVC & GraphQL with Nestjs
+- yarn start
+- [GraphQL](http://localhost:3000/graphql?query={list:queryResources{id,name}resource(id:1){id,name}menu(id:2){id,title,icon}total:countResources})
+- [MVC](http://localhost:3000/emp/list)
+- [Rest Api](http://localhost:3000/api/emp/list)
 
 ### gulp & webpack
 - [gulp & webpack整合，鱼与熊掌我都要](http://www.jianshu.com/p/9724c47b406c)
