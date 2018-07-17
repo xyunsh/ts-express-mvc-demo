@@ -11,7 +11,7 @@ export class MenuResolvers {
 
     } 
 
-    // http://localhost:3000/graphql?query={getMenus{id,title}}
+    // http://localhost:3000/graphql?query={queryMenus{id,title}}
     @Query('queryMenus')
     async query() {
         return await this.menuRepository.findAll();

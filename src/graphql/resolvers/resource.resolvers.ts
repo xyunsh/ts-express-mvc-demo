@@ -11,6 +11,7 @@ export class ResourceResolvers {
 
     } 
 
+    //http://localhost:3000/graphql?query={queryResources{id,name}resource(id:1){id,name}menu(id:2){id,title,icon}countResources}
     @Query('queryResources')
     async query() {
         return await this.resourceRepository.findAll();
