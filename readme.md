@@ -1,6 +1,6 @@
 
 ## Web Rest Api & MVC & GraphQL with Nestjs
-- yarn start
+- Run yarn start
 - [GraphQL](http://localhost:3000/graphql?query={list:queryResources{id,name}resource(id:1){id,name}menu(id:2){id,title,icon}total:countResources})
 - [MVC](http://localhost:3000/emp/list)
 - [Rest Api](http://localhost:3000/api/emp/list)

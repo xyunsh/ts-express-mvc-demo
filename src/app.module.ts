@@ -3,12 +3,12 @@ import { graphqlExpress } from 'apollo-server-express';
 import { GraphQLModule, GraphQLFactory } from '@nestjs/graphql';
 import { RouterModule, Route } from 'nest-router';
 
-import { RestModule } from './rest.module';
-import { MvcModule } from './mvc.module';
-import { GraphQLApiModule } from './graphql.module';
-import { LoggerMiddleware } from './core/middlewares/LoggerMiddleware';
-import { AllowCrossMiddleware } from './core/middlewares/AllowCrossMiddleware';
-import { routes } from './routes';
+import { RestModule } from '@rest.module';
+import { MvcModule } from '@mvc.module';
+import { GraphQLApiModule } from '@graphql.module';
+import { LoggerMiddleware } from '@core/middlewares/LoggerMiddleware';
+import { AllowCrossMiddleware } from '@core/middlewares/AllowCrossMiddleware';
+import { routes } from '@routes';
 
 // path property to modules
 // https://github.com/nestjs/nest/pull/297

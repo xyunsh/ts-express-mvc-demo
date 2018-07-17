@@ -13,9 +13,9 @@ import * as bodyParser from 'body-parser';
 import * as nunjucks from 'nunjucks';
 import { NestFactory } from '@nestjs/core';
 
-import configNunjucks from './core/express-nunjucks';
-import * as filters from './filters';
-import { ApplicationModule } from './app.module';
+import configNunjucks from '@core/express-nunjucks';
+import * as filters from '@filters';
+import { ApplicationModule } from '@app.module';
 import { AnyExceptionFilter } from '@core/filters/AnyExceptionFilter';
 import { HttpExceptionFilter } from '@core/filters/HttpExceptionFilter';
 
