@@ -16,7 +16,7 @@ export const databaseProviders = [
                 ]
             });
 
-            await employees.sync();
+            //await employees.sync();
 
             return employees;
         }
@@ -35,7 +35,7 @@ export const databaseProviders = [
                 ]
             });
 
-            await auth.sync();
+            //await auth.sync();
 
             return auth;
         }

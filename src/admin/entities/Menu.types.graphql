@@ -1,6 +1,6 @@
 type Query {
-    query: [Menu],
-    details(id: ID!): Menu
+    getMenus: [Menu],
+    menu(id: ID!): Menu
 }
 
 type Menu {

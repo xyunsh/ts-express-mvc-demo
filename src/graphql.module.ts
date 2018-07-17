@@ -8,8 +8,6 @@ import { MenuResolvers } from './graphql/resolvers/menu.resolvers';
 
 @Module({
     imports: [ DatabaseModule ],
-    providers: [ EmployeeService, ...employeesProviders, ...adminProviders, MenuResolvers ]
+    providers: [ ...adminProviders, MenuResolvers ]
 })
-export class GraphQLModule{
-    
-}
+export class GraphQLApiModule{}

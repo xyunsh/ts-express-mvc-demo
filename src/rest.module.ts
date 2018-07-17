@@ -12,5 +12,7 @@ import { EmployeeService } from './services/employees/employee.service';
     providers: [ EmployeeService, ...employeesProviders, ...adminProviders ]
 })
 export class RestModule{
-    
+    constructor(){
+        console.log('init RestModule');
+    }   
 }

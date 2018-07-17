@@ -5,7 +5,7 @@ import { RouterModule, Route } from 'nest-router';
 
 import { RestModule } from './rest.module';
 import { MvcModule } from './mvc.module';
-import { GraphQLModule as MyGraphQLModule } from './graphql.module';
+import { GraphQLApiModule } from './graphql.module';
 import { LoggerMiddleware } from './core/middlewares/LoggerMiddleware';
 import { AllowCrossMiddleware } from './core/middlewares/AllowCrossMiddleware';
 import { routes } from './routes';
@@ -13,9 +13,7 @@ import { routes } from './routes';
 // path property to modules
 // https://github.com/nestjs/nest/pull/297
 @Module({
-    imports: [ RouterModule.forRoutes(routes), RestModule, MvcModule, GraphQLModule, MyGraphQLModule ],
-    controllers: [ ],
-    providers: [ ],
+    imports: [ RouterModule.forRoutes(routes), RestModule, MvcModule, GraphQLApiModule, GraphQLModule ]
 })
 export class ApplicationModule implements NestModule {
 
@@ -24,15 +22,20 @@ export class ApplicationModule implements NestModule {
     }
 
     configure(consumer: MiddlewareConsumer) : void {
+
+        const schema = this.createSchema();
+
         consumer.apply(LoggerMiddleware)
             //.with({ a: 'abc'}, { c: 'ddd'})
-            .forRoutes('*');
+            .forRoutes('*')
+            .apply(AllowCrossMiddleware)
+            .forRoutes('*')
+            .apply(graphqlExpress( req=> ({ schema, rootValue: req})))
+            .forRoutes('/graphql');
+    }
 
-        consumer.apply(AllowCrossMiddleware)
-            .forRoutes('*');
-        
+    createSchema() {
         const typeDefs = this.graphQLFactory.mergeTypesByPaths('./**/*.graphql');
-        const schema = this.graphQLFactory.createSchema({ typeDefs });
-        consumer.apply(graphqlExpress( req=> ({ schema:{}, rootValue: req}))).forRoutes('/graphql');
+        return this.graphQLFactory.createSchema({ typeDefs });
     }
 }
