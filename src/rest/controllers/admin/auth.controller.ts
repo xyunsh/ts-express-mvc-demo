@@ -1,7 +1,8 @@
-import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject } from '@nestjs/common';
+import { Controller, Get, Post, HttpCode, Body, Param, Query, Render, Inject } from '@nestjs/common';
 
 import { resultOK, resultError, md5 } from '@utils';
 import { User, Role } from '@admin';
+import { AuthService } from '@auth';
 
 import BaseController from '../../base.controller';
 
@@ -16,12 +17,13 @@ export class AuthController {
     constructor(
         @Inject('UserRepository') private readonly userRepository: typeof User,
         @Inject('RoleRepository') private readonly roleRepository: typeof Role,
+        private readonly authService: AuthService
     ){
         
     }
 
-    @Post("login")
-    async login(@Body() loginRequest: LoginRequest){
+    @Get("login")
+    async login(@Query() loginRequest: LoginRequest){
 
         const { login_name, password } = loginRequest;
 
@@ -42,6 +44,8 @@ export class AuthController {
             return resultError(420, '帐号或者密码输入错误,请检查输入');
         }
 
-        return resultOK({ token: user.id});
+        const token = await this.authService.createToken(user);
+
+        return resultOK(token);
     }
 }

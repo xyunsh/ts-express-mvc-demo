@@ -17,6 +17,7 @@ import { GraphQLApiModule } from "@graphql.module";
 import { LoggerMiddleware } from "@core/middlewares/LoggerMiddleware";
 import { routes } from "@routes";
 import { RightsGuard } from '@admin';
+import { AuthGuard } from "@nestjs/passport";
 
 // path property to modules
 // https://github.com/nestjs/nest/pull/297
@@ -32,8 +33,12 @@ import { RightsGuard } from '@admin';
     providers: [
         {
             provide: APP_GUARD,
+            useClass: AuthGuard('jwt')
+        },
+        {
+            provide: APP_GUARD,
             useClass: RightsGuard
-        }
+        },
     ]
 })
 export class ApplicationModule implements NestModule {

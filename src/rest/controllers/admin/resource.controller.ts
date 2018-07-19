@@ -1,24 +1,43 @@
-import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Post,
+    HttpCode,
+    Body,
+    Param,
+    Render,
+    Inject,
+    UseGuards
+} from "@nestjs/common";
+//import { AuthGuard } from "@nestjs/passport";
+import {
+    Resource,
+    Privilege,
+    BindResource,
+    Resources,
+    Privileges,
+    NeedPrivilege
+} from "@admin";
+import { resultOK, Result } from "@utils/result";
 
-import { Resource, Privilege, BindResource, Resources, Privileges, NeedPrivilege } from '@admin';
-import { resultOK, Result } from '@utils/result';
+import BaseController from "@rest/base.controller";
 
-import BaseController from '@rest/base.controller';
-
-@Controller('admin/resource')
+@Controller("admin/resource")
 @BindResource(Resources.Sys)
-export class ResourceController extends BaseController<Resource>{
+export class ResourceController extends BaseController<Resource> {
     constructor(
-        @Inject('ResourceRepository') private readonly repo: typeof Resource,
-        @Inject('PrivilegeRepository') private readonly privilegeRepo: typeof Privilege,
-    ){
+        @Inject("ResourceRepository") private readonly repo: typeof Resource,
+        @Inject("PrivilegeRepository")
+        private readonly privilegeRepo: typeof Privilege
+    ) {
         super(repo);
     }
 
-    @Get('query')
+    @Get("query")
     @NeedPrivilege(Privileges.Browse)
-    public async query(@Body() inputs){
-        const { offset = 0, limit = 10, order = [['id', 'DESC']] } = inputs;
+    //@UseGuards(AuthGuard("jwt"))
+    public async query(@Body() inputs) {
+        const { offset = 0, limit = 10, order = [["id", "DESC"]] } = inputs;
 
         const { count, rows } = await this.repo.findAndCount({
             offset,
@@ -30,44 +49,53 @@ export class ResourceController extends BaseController<Resource>{
             total: count,
             count: limit,
             entities: rows
-                .map(el=>el.get({plain:true}))
-                .map(({privileges,...rest})=>({...rest,privileges:privileges ? privileges.map(p=>p.id) : []}))
+                .map(el => el.get({ plain: true }))
+                .map(({ privileges, ...rest }) => ({
+                    ...rest,
+                    privileges: privileges ? privileges.map(p => p.id) : []
+                }))
         });
     }
 
-    @Post('modify')
-    public async modify(@Body() inputs){
-        const { id, privileges,  ...attrs } = inputs;
+    @Post("modify")
+    public async modify(@Body() inputs) {
+        const { id, privileges, ...attrs } = inputs;
 
-        if(id){
+        if (id) {
             const o = await this.repo.findById(id);
 
             await o.update(attrs);
 
-            await Promise.all(o.privileges.map( async p => {
-                const exists = privileges.find(pid=>pid === p.id);
+            await Promise.all(
+                o.privileges.map(async p => {
+                    const exists = privileges.find(pid => pid === p.id);
 
-                if(!exists){
-                    await o.$remove('privilege', p);
-                }
-            }));
+                    if (!exists) {
+                        await o.$remove("privilege", p);
+                    }
+                })
+            );
 
-            await Promise.all(privileges.map( async pid => {
-                const priv = o.privileges.find(_p=>_p.id === pid);
+            await Promise.all(
+                privileges.map(async pid => {
+                    const priv = o.privileges.find(_p => _p.id === pid);
 
-                if(!priv){
-                    const privilege = await this.privilegeRepo.findById(pid);
-                    await o.$add('privilege', privilege );
-                }
-            }));
+                    if (!priv) {
+                        const privilege = await this.privilegeRepo.findById(
+                            pid
+                        );
+                        await o.$add("privilege", privilege);
+                    }
+                })
+            );
 
-            const po = (await this.repo.findById(id)).get({plain:true});
+            const po = (await this.repo.findById(id)).get({ plain: true });
 
-            po.privileges = po.privileges.map(p=>p.id);
-            
+            po.privileges = po.privileges.map(p => p.id);
+
             return resultOK(po);
-        }else{
-            const o = await this.repo.create( attrs );
+        } else {
+            const o = await this.repo.create(attrs);
 
             return resultOK(o);
         }

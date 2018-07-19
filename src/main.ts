@@ -27,11 +27,6 @@ async function bootstrap() {
         .use(cookieParser())
         .use(express.static(path.join(__dirname,'../public')))
         .enableCors();
-        //.useGlobalGuards(new RightsGuard());
-
-    // const rightsGuard = app.select( ApplicationModule ).get(RightsGuard);
-
-    // app.useGlobalGuards(rightsGuard);
 
     configNunjucks(path.join(__dirname, './mvc/views'),{
         autoescape:true,
