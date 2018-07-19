@@ -1,17 +1,13 @@
-import { Role } from './entities/Role';
-import { User } from './entities/User';
-import { Menu } from './entities/Menu';
-import { Privilege } from './entities/Privilege';
-import { Resource } from './entities/Resource';
-import { Right } from './entities/Right';
-import { RoleRight } from './entities/RoleRight';
-import { UserRole } from './entities/UserRole';
+export { Role } from './entities/Role';
+export { User } from './entities/User';
+export { Menu } from './entities/Menu';
+export { Privilege } from './entities/Privilege';
+export { Resource } from './entities/Resource';
+export { Right } from './entities/Right';
+export { RoleRight } from './entities/RoleRight';
+export { UserRole } from './entities/UserRole';
 
-export {
-    Role,
-    User,
-    Menu,
-    Privilege,
-    Resource,
-    Right
-};
+export { RightsGuard } from './guards/rights.guard';
+export * from './decorators/right.decorator';
+
+export * from './constants';

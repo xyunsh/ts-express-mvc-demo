@@ -25,7 +25,8 @@ export default abstract class BaseController<T extends Model<T>>{
         return resultOK(o);
     }
 
-    @Post('query')
+    //@Post('query')
+    @Get('query')
     public async query(@Body() inputs){
         const { offset = 0, limit = 10, order = [['id', 'DESC']] } = inputs;
 

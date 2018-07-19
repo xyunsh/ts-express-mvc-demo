@@ -1,11 +1,12 @@
 import { Controller, Get, Post, HttpCode, Body, Param, Render, Inject } from '@nestjs/common';
 
-import { Resource, Privilege } from '@admin';
+import { Resource, Privilege, BindResource, Resources, Privileges, NeedPrivilege } from '@admin';
 import { resultOK, Result } from '@utils/result';
 
 import BaseController from '@rest/base.controller';
 
 @Controller('admin/resource')
+@BindResource(Resources.Sys)
 export class ResourceController extends BaseController<Resource>{
     constructor(
         @Inject('ResourceRepository') private readonly repo: typeof Resource,
@@ -14,7 +15,8 @@ export class ResourceController extends BaseController<Resource>{
         super(repo);
     }
 
-    @Post('query')
+    @Get('query')
+    @NeedPrivilege(Privileges.Browse)
     public async query(@Body() inputs){
         const { offset = 0, limit = 10, order = [['id', 'DESC']] } = inputs;
 

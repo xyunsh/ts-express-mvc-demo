@@ -3,7 +3,7 @@
         "module": "commonjs",
         "target": "es6",
         "outDir": "./dist/",
-        "sourceMap": true,
+        "sourceMap": false,
         "watch": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
@@ -12,7 +12,13 @@
             "@*": [
                 "src/*"
             ]
-        }    
+        },
+        "lib":[
+            "es2015",//https://stackoverflow.com/questions/38950757/tsc-report-error-ts2318-cannot-find-global-type-boolean
+            "esnext.asynciterable"
+        ],
+        //https://github.com/RobinBuschmann/sequelize-typescript/issues/379
+        "keyofStringsOnly": true
     },
     "include": [
         "./src/**/*"

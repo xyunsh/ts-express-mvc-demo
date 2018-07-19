@@ -14,10 +14,9 @@ import * as nunjucks from 'nunjucks';
 import { NestFactory } from '@nestjs/core';
 
 import configNunjucks from '@core/express-nunjucks';
-import * as filters from '@filters';
+import * as filters from '@mvc/filters';
 import { ApplicationModule } from '@app.module';
-import { AnyExceptionFilter } from '@core/filters/AnyExceptionFilter';
-import { HttpExceptionFilter } from '@core/filters/HttpExceptionFilter';
+import { HttpExceptionFilter, AnyExceptionFilter } from '@core';
 
 async function bootstrap() {
     const app = await NestFactory.create( ApplicationModule );
@@ -26,7 +25,13 @@ async function bootstrap() {
         .use(bodyParser.json())
         .use(bodyParser.urlencoded({extended:false}))
         .use(cookieParser())
-        .use(express.static(path.join(__dirname,'../public')));
+        .use(express.static(path.join(__dirname,'../public')))
+        .enableCors();
+        //.useGlobalGuards(new RightsGuard());
+
+    // const rightsGuard = app.select( ApplicationModule ).get(RightsGuard);
+
+    // app.useGlobalGuards(rightsGuard);
 
     configNunjucks(path.join(__dirname, './mvc/views'),{
         autoescape:true,
