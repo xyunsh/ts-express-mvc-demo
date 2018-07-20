@@ -7,7 +7,7 @@ import {
     Param,
     Render,
     Inject,
-    UseGuards
+    UseGuards,
 } from "@nestjs/common";
 //import { AuthGuard } from "@nestjs/passport";
 import {
@@ -16,7 +16,8 @@ import {
     BindResource,
     Resources,
     Privileges,
-    NeedPrivilege
+    NeedPrivilege,
+    LoginUser
 } from "@admin";
 import { resultOK, Result } from "@utils/result";
 
@@ -36,7 +37,10 @@ export class ResourceController extends BaseController<Resource> {
     @Get("query")
     @NeedPrivilege(Privileges.Browse)
     //@UseGuards(AuthGuard("jwt"))
-    public async query(@Body() inputs) {
+    public async query(@Body() inputs, @LoginUser() user) {
+
+        console.log('user',user);
+
         const { offset = 0, limit = 10, order = [["id", "DESC"]] } = inputs;
 
         const { count, rows } = await this.repo.findAndCount({

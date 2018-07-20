@@ -1,6 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { Controller, Get, Post, HttpCode, Param, Body } from '@nestjs/common';
 import { resultOK, Result } from '@utils/result';
+import { LoginUser } from '@admin';
 
 // https://github.com/RobinBuschmann/sequelize-typescript/issues/232
 type NonAbstract<T> = {[P in keyof T]: T[P]}; // "abstract" gets lost here
@@ -27,7 +28,7 @@ export default abstract class BaseController<T extends Model<T>>{
 
     //@Post('query')
     @Get('query')
-    public async query(@Body() inputs){
+    public async query(@Body() inputs, @LoginUser() user){
         const { offset = 0, limit = 10, order = [['id', 'DESC']] } = inputs;
 
         const { count, rows } = await this.repository.findAndCount({
