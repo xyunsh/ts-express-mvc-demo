@@ -10,8 +10,8 @@ export const routes: Routes = [
         path: '/api',
         module: RestModule
     },
-    // {
-    //     path: '/site',
-    //     module: MvcModule
-    // }
+    {
+        path: '/site',
+        module: MvcModule
+    }
 ];

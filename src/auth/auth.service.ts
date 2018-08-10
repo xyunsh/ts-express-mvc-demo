@@ -1,7 +1,7 @@
 import * as jwt from "jsonwebtoken";
 import { Injectable, Inject } from "@nestjs/common";
 
-import { User } from "@admin";
+import { User, Role, Right, Privilege, Resource } from "@admin";
 import { JwtPayload } from "./interfaces/jwt-payload.interface";
 
 @Injectable()
@@ -25,6 +25,25 @@ export class AuthService {
 
     async validateUser(payload: JwtPayload): Promise<any> {
         const { id } = payload;
-        return this.userRepository.findById<User>(id, {raw:true});
+        const user = await this.userRepository.findById<User>(id,{
+            include:[
+                {
+                    model: Role,
+                    include: [ 
+                        {
+                            model:Right,
+                            include:[ Privilege, Resource]
+                        }
+                    ]
+                },
+                Right
+            ]
+        });
+
+        const rights = user.roles.map(role=>role.rights.map(r=>r.get({plain:true})));
+
+        console.log(rights);
+
+        return user.get({plain:true});
     }
 }

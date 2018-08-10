@@ -25,7 +25,7 @@ export class Role extends Model<Role>{
     @Column({ type: DataType.BOOLEAN })
     status: boolean;
 
-    @BelongsToMany(() => Role, () => UserRole)
+    @BelongsToMany(() => User, () => UserRole)
     users: User[];
 
     @BelongsToMany(() => Right, () => RoleRight)

@@ -8,6 +8,15 @@ import controllers from "@rest/controllers/";
 import { EmployeeService } from "@services/employees/employee.service";
 import { AuthService, JwtStrategy } from "@auth";
 
+
+/** 
+* class RestModule
+* * rest api
+* ! rest api
+* ? 如何使RightsGuard 仅仅作用于RestModule
+* TODO ?
+* @param 
+*/
 @Module({
     controllers,
     providers: [
@@ -16,10 +25,10 @@ import { AuthService, JwtStrategy } from "@auth";
         AuthService,
         JwtStrategy,
         EmployeeService,
-        {
-            provide: APP_GUARD,
-            useClass: RightsGuard
-        },
+        // {
+        //     provide: APP_GUARD,
+        //     useClass: RightsGuard
+        // },
     ]
 })
 export class RestModule {}

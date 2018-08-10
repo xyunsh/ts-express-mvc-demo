@@ -5,7 +5,6 @@ import {
     RequestMethod,
     Type
 } from "@nestjs/common";
-import { APP_GUARD } from '@nestjs/core';
 import { graphqlExpress } from "apollo-server-express";
 import { GraphQLModule, GraphQLFactory } from "@nestjs/graphql";
 import { RouterModule, Route } from "nest-router";
@@ -16,9 +15,6 @@ import { MvcModule } from "@mvc.module";
 import { GraphQLApiModule } from "@graphql.module";
 import { LoggerMiddleware } from "@core/middlewares/LoggerMiddleware";
 import { routes } from "@routes";
-// import { RightsGuard } from '@admin';
-// import { AuthGuard } from "@nestjs/passport";
-// import { adminProviders } from "@admin/admin.providers";
 
 // path property to modules
 // https://github.com/nestjs/nest/pull/297
@@ -29,17 +25,7 @@ import { routes } from "@routes";
         RestModule,
         MvcModule,
         GraphQLApiModule,
-        GraphQLModule,
-    ],
-    providers: [
-        // {
-        //     provide: APP_GUARD,
-        //     useClass: AuthGuard('jwt')
-        // },
-        // {
-        //     provide: APP_GUARD,
-        //     useClass: RightsGuard
-        // },
+        GraphQLModule
     ]
 })
 export class ApplicationModule implements NestModule {

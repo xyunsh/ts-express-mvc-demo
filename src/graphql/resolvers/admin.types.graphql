@@ -1,0 +1,54 @@
+type Query {
+    queryResources:[Resource],
+    countResources: Int,
+    resource(id: ID!): Resource,
+
+    queryRoles: [Role],
+    role(id: ID!): Role,
+
+    queryMenus: [Menu],
+    menu(id: ID!): Menu,
+
+    queryUsers: [User],
+    user(id: ID!): User
+}
+
+type Role {
+    id: ID!,
+    name: String!,
+    rights: [Right]
+}
+
+type Menu {
+    id: ID!,
+    title: String,
+    icon: String,
+    path: String,
+    right: Right
+}
+
+type Resource {
+    id: ID!,
+    name: String,
+    slug: String
+}
+
+type Privilege {
+    id: ID!,
+    name: String,
+    slug: String
+}
+
+type Right {
+    id: ID!,
+    privilege: Privilege,
+    resource: Resource
+}
+
+type User {
+    id: ID!,
+    login_name: String!,
+    email: String,
+    display_name: String!,
+    roles: [Role]
+}
