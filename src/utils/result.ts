@@ -14,7 +14,7 @@ export const result = ( code: number, message?: string, data?: any ) => {
 }
 
 export const resultOK = (data?: any ) => {
-    return result(OK, 'Success', data );
+    return result(OK, 'OK', data );
 }
 
 export const resultError = ( code: number, message?: string ) => {

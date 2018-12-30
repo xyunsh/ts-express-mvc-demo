@@ -5,7 +5,7 @@ import {
     RequestMethod,
     Type
 } from "@nestjs/common";
-import { graphqlExpress } from "apollo-server-express";
+import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
 import { GraphQLModule, GraphQLFactory } from "@nestjs/graphql";
 import { RouterModule, Route } from "nest-router";
 
@@ -38,6 +38,8 @@ export class ApplicationModule implements NestModule {
             .apply(LoggerMiddleware)
             //.with({ a: 'abc'}, { c: 'ddd'})
             .forRoutes("*")
+            .apply(graphiqlExpress({ endpointURL: '/graphql' }))
+            .forRoutes({ path: '/graphiql', method: RequestMethod.GET })      
             .apply(graphqlExpress(req => ({ schema, rootValue: req })))
             .forRoutes("/graphql");
     }

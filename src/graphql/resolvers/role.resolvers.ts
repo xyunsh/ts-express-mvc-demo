@@ -11,7 +11,7 @@ export class RoleResolvers {
 
     } 
 
-    @Query('queryRoles')
+    @Query('roles')
     async query() {
         return await this.roleRepository.findAll();
     }

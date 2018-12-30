@@ -28,8 +28,7 @@ import BaseController from "@rest/base.controller";
 export class ResourceController extends BaseController<Resource> {
     constructor(
         @Inject("ResourceRepository") private readonly repo: typeof Resource,
-        @Inject("PrivilegeRepository")
-        private readonly privilegeRepo: typeof Privilege
+        @Inject("PrivilegeRepository") private readonly privilegeRepo: typeof Privilege
     ) {
         super(repo);
     }
