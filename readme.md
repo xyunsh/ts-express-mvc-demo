@@ -27,3 +27,4 @@
 ### tips
 - [paths & baseUrl in tsconfig.json not work with ts-node, but tsc](https://github.com/Microsoft/TypeScript/issues/9259)
 - [https://github.com/TypeStrong/ts-node/issues/219](https://github.com/TypeStrong/ts-node/issues/219)
+- [test]
